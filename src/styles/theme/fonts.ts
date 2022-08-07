@@ -1,5 +1,4 @@
 export default {
-  title: '',
-  description: '',
-  extra: '',
+  primary: 'FiraCode',
+  secondary: 'Nunito',
 };
