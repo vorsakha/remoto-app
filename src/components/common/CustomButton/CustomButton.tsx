@@ -3,13 +3,13 @@ import { TouchableOpacityProps } from 'react-native';
 import { ButtonText, ButtonWrapper } from './styles';
 
 interface CustomButtonProps extends TouchableOpacityProps {
-  children: string;
+  text: string;
 }
 
-function CustomButton({ children, ...rest }: CustomButtonProps) {
+function CustomButton({ text, ...rest }: CustomButtonProps) {
   return (
     <ButtonWrapper {...rest}>
-      <ButtonText>{children}</ButtonText>
+      <ButtonText>{text}</ButtonText>
     </ButtonWrapper>
   );
 }
