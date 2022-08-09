@@ -29,6 +29,7 @@
         "extensions": [".ts", ".tsx"]
       }
     ],
+    "no-underscore-dangle": "off",
     "no-restricted-exports": "off",
     "react/style-prop-object": "off",
     "react/jsx-props-no-spreading": "off",
