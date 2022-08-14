@@ -1,25 +1,13 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import styled from 'styled-components/native';
+import { List } from '../components';
+import { JobsTypes, useJobs } from '../services/useJobs';
+import { usePagination } from '../services/usePagination';
 
 function Home() {
-  return (
-    <StyledContainer>
-      <StyledText>Open up App.tsx to start working on your app!</StyledText>
-    </StyledContainer>
-  );
+  const [data, loading] = useJobs();
+  const [paginatedData, refetch] = usePagination(data as JobsTypes);
+
+  return <List data={paginatedData} refetch={refetch} loading={loading} />;
 }
-
-const StyledContainer = styled(View)`
-  flex: 1;
-  background-color: '#fff';
-  align-items: center;
-  justify-content: center;
-`;
-
-const StyledText = styled(Text)`
-  font-family: '${({ theme }) => theme.fonts.primary}';
-  font-size: 30px;
-`;
 
 export default Home;
