@@ -1,6 +1,7 @@
 import { RouteProp, useRoute } from '@react-navigation/native';
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
+import { Layout } from '../components';
 import { ParamList } from '../routes';
 
 function Details() {
@@ -10,9 +11,9 @@ function Details() {
 
   console.log(data);
   return (
-    <View>
+    <Layout title="Detalhes">
       <Text>Details</Text>
-    </View>
+    </Layout>
   );
 }
 

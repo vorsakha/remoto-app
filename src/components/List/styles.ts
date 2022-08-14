@@ -8,8 +8,6 @@ import styled from 'styled-components/native';
 import { Title } from '../common';
 
 export const ListContainer = styled(View)`
-  /* padding-vertical: 24px; */
-  padding-top: 24px;
   background-color: ${({ theme }) => theme.colors.gray._100};
 `;
 
@@ -17,7 +15,7 @@ export const ListItem = styled(TouchableOpacity).attrs({
   activeOpacity: 0.6,
 })<TouchableOpacityProps>`
   border: 1px solid ${({ theme }) => theme.colors.violet.transparency};
-  margin-vertical: 12px;
+  margin-top: 24px;
   border-radius: 5px;
   padding: 12px;
   justify-content: space-between;
