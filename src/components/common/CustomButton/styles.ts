@@ -16,6 +16,6 @@ export const ButtonWrapper = styled(
 `;
 
 export const ButtonText = styled(Text)`
-  color: ${({ theme }) => theme.colors.white._100};
+  color: ${({ theme }) => theme.colors.white};
   text-transform: uppercase;
 `;
