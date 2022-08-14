@@ -9,7 +9,7 @@ import { Title } from '../common';
 
 export const ListContainer = styled(View)`
   /* padding-vertical: 24px; */
-  padding-top: 24px;
+  /* padding-top: 24px; */
   background-color: ${({ theme }) => theme.colors.gray._100};
 `;
 

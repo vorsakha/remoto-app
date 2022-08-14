@@ -1,11 +1,15 @@
-import React, { ReactNode } from 'react';
-import { Title } from '../common';
+import React, { PropsWithChildren } from 'react';
+import Header from '../Header';
 import { LayoutWrapper } from './styles';
 
-function Layout({ children }: { children: ReactNode }) {
+interface LayoutProps extends PropsWithChildren {
+  title: string;
+}
+
+function Layout({ children, title }: LayoutProps) {
   return (
     <LayoutWrapper>
-      <Title>HEADER</Title>
+      <Header title={title} />
 
       {children}
     </LayoutWrapper>
