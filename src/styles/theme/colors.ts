@@ -7,5 +7,7 @@ export default {
   },
   violet: {
     _700: '#5C00A3',
+    _300: '#8C4CBE ',
+    transparency: 'rgba(92, 0, 163, 0.2)',
   },
 };

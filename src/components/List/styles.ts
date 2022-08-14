@@ -5,6 +5,7 @@ import {
   View,
 } from 'react-native';
 import styled from 'styled-components/native';
+import { Title } from '../common';
 
 export const ListContainer = styled(View)`
   /* padding-vertical: 24px; */
@@ -15,16 +16,22 @@ export const ListContainer = styled(View)`
 export const ListItem = styled(TouchableOpacity).attrs({
   activeOpacity: 0.6,
 })<TouchableOpacityProps>`
-  border: 1px solid ${({ theme }) => theme.colors.violet._700};
+  border: 1px solid ${({ theme }) => theme.colors.violet.transparency};
   margin-vertical: 12px;
   border-radius: 5px;
   padding: 12px;
   justify-content: space-between;
   margin-horizontal: 24px;
+  min-height: 170px;
+  background-color: ${({ theme }) => theme.colors.white};
+
+  elevation: 6;
+  shadow-opacity: 0.1;
+  shadow-color: ${({ theme }) => theme.colors.violet._300};
+  shadow-radius: 5px;
 `;
 
-export const ListItemTitle = styled(Text)`
-  font-family: ${({ theme }) => theme.fonts.primary};
+export const ListItemTitle = styled(Title)`
   font-size: 18px;
 `;
 
@@ -35,22 +42,4 @@ export const ListItemDate = styled(Text)`
 
 export const BadgesList = styled(View)`
   padding-vertical: 12px;
-`;
-
-export const BadgesListItem = styled(View)`
-  border: 1px solid ${({ theme }) => theme.colors.violet._700};
-  padding: 6px 12px;
-  border-radius: 10px;
-  margin-right: 6px;
-  flex-direction: row;
-`;
-
-export const BadgesListItemIcon = styled(View)<{ isEmpty: boolean }>`
-  margin-right: ${({ isEmpty }) => (isEmpty ? 0 : '3px')};
-`;
-
-export const BadgesListItemTitle = styled(Text)`
-  font-family: ${({ theme }) => theme.fonts.secondary};
-  color: ${({ theme }) => theme.colors.violet._700};
-  font-size: 14px;
 `;

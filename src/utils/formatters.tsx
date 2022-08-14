@@ -8,10 +8,11 @@ import formatDistance from 'date-fns/formatDistance';
 import { ptBR } from 'date-fns/locale';
 import { theme } from '../styles/theme';
 
-export const titleFormatter = (string: string) => {
+export const titleFormatter = (string: string, limit?: boolean) => {
   if (!string) return '';
 
-  return string
+  const cleanString = string
+    .replace('[ Remoto ]', '')
     .replace('[Remoto]', '')
     .replace('[Remota]', '')
     .replace('[Remote]', '')
@@ -32,6 +33,10 @@ export const titleFormatter = (string: string) => {
     .replace('Remoto', '')
     .replace('|', '')
     .trim();
+
+  return limit
+    ? `${cleanString.split(' ').slice(0, 12).join(' ')}...`
+    : cleanString;
 };
 
 export const dateFormatter = (originalDate: string) => {

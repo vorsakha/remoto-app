@@ -2,18 +2,10 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { FlatList } from 'react-native';
 import { JobsDataTypes } from '../../services/useJobs';
-import {
-  dateFormatter,
-  iconFormatter,
-  tagFormatter,
-  titleFormatter,
-} from '../../utils/formatters';
-import { Loading } from '../common';
+import { dateFormatter } from '../../utils/formatters';
+import { Badge, Loading } from '../common';
 import {
   BadgesList,
-  BadgesListItem,
-  BadgesListItemIcon,
-  BadgesListItemTitle,
   ListContainer,
   ListItem,
   ListItemDate,
@@ -32,14 +24,7 @@ function List({ data, refetch, loading }: ListProps) {
   const keyExtractor = (item: JobsDataTypes) => String(item.id);
 
   const renderItemBadge = ({ item }: { item: { name: string } }) => (
-    <BadgesListItem>
-      <BadgesListItemIcon
-        isEmpty={iconFormatter(tagFormatter(item.name)) === ''}
-      >
-        {iconFormatter(tagFormatter(item.name))}
-      </BadgesListItemIcon>
-      <BadgesListItemTitle>{tagFormatter(item.name)}</BadgesListItemTitle>
-    </BadgesListItem>
+    <Badge name={item.name} />
   );
 
   const renderItem = ({ item }: { item: JobsDataTypes }) => (
@@ -50,13 +35,13 @@ function List({ data, refetch, loading }: ListProps) {
         })
       }
     >
-      <ListItemTitle>{titleFormatter(item?.title)}</ListItemTitle>
+      <ListItemTitle limit>{item?.title}</ListItemTitle>
 
       <BadgesList>
         <FlatList
           data={item.labels}
           renderItem={renderItemBadge}
-          keyExtractor={badge => badge.name}
+          keyExtractor={badge => String(badge.name)}
           horizontal
         />
       </BadgesList>
