@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { JobsDataTypes, JobsTypes } from './useJobs';
 
-export const usePagination = (jobs: JobsTypes) => {
+type PaginationReturnProps = [JobsDataTypes[] | null, () => void];
+
+export const usePagination = (jobs: JobsTypes): PaginationReturnProps => {
   const [paginatedData, setPaginatedData] = useState<JobsDataTypes[] | null>(
     null,
   );

@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { DATA_URL } from '../constants';
+import { filterByDate } from '../utils/filters';
 
 export interface JobsDataTypes {
   body: string;
@@ -21,7 +22,9 @@ export interface JobsTypes {
   data: JobsDataTypes[];
 }
 
-export const useJobs = () => {
+type JobsReturnProps = [JobsTypes | null, boolean];
+
+export const useJobs = (): JobsReturnProps => {
   const [loading, setLoading] = useState(false);
   const [cachedData, setCachedData] = useState<JobsTypes | null>(null);
 
@@ -39,16 +42,18 @@ export const useJobs = () => {
     ) {
       try {
         const { data } = await axios.get(DATA_URL as string);
+        const filteredData = {
+          data: filterByDate(data),
+        };
 
-        AsyncStorage.setItem('jobList', JSON.stringify(data));
-        setCachedData(data);
+        AsyncStorage.setItem('jobList', JSON.stringify(filteredData));
+        setCachedData(filteredData);
 
         setLoading(false);
 
         return AsyncStorage.setItem('lastRequest', JSON.stringify(new Date()));
-      } catch (error) {
+      } catch {
         setLoading(false);
-        console.error(error);
       }
     } else {
       const cache = await AsyncStorage.getItem('jobList');
