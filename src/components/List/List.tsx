@@ -55,18 +55,20 @@ function List({ data, refetch, loading }: ListProps) {
 
   const separator = () => <Separator />;
 
-  return loading ? (
-    <Loading />
-  ) : (
+  return (
     <ListContainer>
-      <FlatList
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={keyExtractor}
-        onEndReached={refetch}
-        onEndReachedThreshold={0.5}
-        ItemSeparatorComponent={separator}
-      />
+      {loading ? (
+        <Loading />
+      ) : (
+        <FlatList
+          data={data}
+          renderItem={renderItem}
+          keyExtractor={keyExtractor}
+          onEndReached={refetch}
+          onEndReachedThreshold={0.5}
+          ItemSeparatorComponent={separator}
+        />
+      )}
     </ListContainer>
   );
 }

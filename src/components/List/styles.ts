@@ -5,17 +5,14 @@ import {
   View,
 } from 'react-native';
 import styled from 'styled-components/native';
-import { Title } from '../common';
+import { Container, Title } from '../common';
 
 interface ListItemProps extends TouchableOpacityProps {
   isEnd: boolean;
   isStart: boolean;
 }
 
-export const ListContainer = styled(View)`
-  flex: 1;
-  background-color: ${({ theme }) => theme.colors.gray._100};
-`;
+export const ListContainer = styled(Container)``;
 
 export const ListItem = styled(TouchableOpacity).attrs({
   activeOpacity: 0.6,
