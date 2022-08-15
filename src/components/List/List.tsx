@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
+import React, { Key } from 'react';
 import { FlatList } from 'react-native';
 import { JobsDataTypes } from '../../services/useJobs';
 import { dateFormatter } from '../../utils/formatters';
@@ -10,6 +10,7 @@ import {
   ListItem,
   ListItemDate,
   ListItemTitle,
+  Separator,
 } from './styles';
 
 interface ListProps {
@@ -27,8 +28,10 @@ function List({ data, refetch, loading }: ListProps) {
     <Badge name={item.name} />
   );
 
-  const renderItem = ({ item }: { item: JobsDataTypes }) => (
+  const renderItem = ({ item, index }: { item: JobsDataTypes; index: Key }) => (
     <ListItem
+      isEnd={index === (data?.length as number) - 1}
+      isStart={index === 0}
       onPress={() =>
         navigate('Details', {
           data: item,
@@ -50,6 +53,8 @@ function List({ data, refetch, loading }: ListProps) {
     </ListItem>
   );
 
+  const separator = () => <Separator />;
+
   return loading ? (
     <Loading />
   ) : (
@@ -60,6 +65,7 @@ function List({ data, refetch, loading }: ListProps) {
         keyExtractor={keyExtractor}
         onEndReached={refetch}
         onEndReachedThreshold={0.5}
+        ItemSeparatorComponent={separator}
       />
     </ListContainer>
   );
