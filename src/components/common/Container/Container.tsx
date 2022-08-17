@@ -3,18 +3,22 @@ import { ContainerScrollView, ContainerView } from './styles';
 
 type ContainerProps = {
   scroll?: boolean;
+  absolute?: boolean;
 } & (ViewProps | ScrollViewProps);
 
-function Container({ children, scroll, ...rest }: ContainerProps) {
+function Container({ children, scroll, absolute, ...rest }: ContainerProps) {
   return scroll ? (
     <ContainerScrollView {...rest}>{children}</ContainerScrollView>
   ) : (
-    <ContainerView {...rest}>{children}</ContainerView>
+    <ContainerView absolute={absolute} {...rest}>
+      {children}
+    </ContainerView>
   );
 }
 
 Container.defaultProps = {
   scroll: false,
+  absolute: false,
 };
 
 export default Container;
