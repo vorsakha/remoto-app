@@ -21,16 +21,11 @@ REMOTO Grabs remote dev job openings from [React-Brasil](https://github.com/reac
 
 ```
 yarn install
-```
-
-### ✔️Build
-
-```
-yarn build
+husky install
 ```
 
 ### ✔️ Develop
 
 ```
-yarn dev
+yarn start
 ```
