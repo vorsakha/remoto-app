@@ -1,16 +1,37 @@
 import { ScrollViewProps, ViewProps } from 'react-native';
 import { ContainerScrollView, ContainerView } from './styles';
 
-type ContainerProps = {
+export type ContainerProps = {
   scroll?: boolean;
-  absolute?: boolean;
+  position?: 'absolute' | 'relative';
+  background?: string;
+  flex?: number;
 } & (ViewProps | ScrollViewProps);
 
-function Container({ children, scroll, absolute, ...rest }: ContainerProps) {
+function Container({
+  children,
+  scroll,
+  position,
+  background,
+  flex,
+  ...rest
+}: ContainerProps) {
   return scroll ? (
-    <ContainerScrollView {...rest}>{children}</ContainerScrollView>
+    <ContainerScrollView
+      flex={flex}
+      position={position}
+      background={background}
+      {...rest}
+    >
+      {children}
+    </ContainerScrollView>
   ) : (
-    <ContainerView absolute={absolute} {...rest}>
+    <ContainerView
+      flex={flex}
+      position={position}
+      background={background}
+      {...rest}
+    >
       {children}
     </ContainerView>
   );
@@ -18,7 +39,9 @@ function Container({ children, scroll, absolute, ...rest }: ContainerProps) {
 
 Container.defaultProps = {
   scroll: false,
-  absolute: false,
+  position: 'static',
+  background: null,
+  flex: 1,
 };
 
 export default Container;
