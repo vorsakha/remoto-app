@@ -43,7 +43,7 @@ export const useJobs = (): JobsReturnProps => {
       try {
         const { data } = await axios.get(DATA_URL as string);
         const filteredData = {
-          data: filterByDate(data),
+          data: filterByDate(data.data),
         };
 
         AsyncStorage.setItem('jobList', JSON.stringify(filteredData));
