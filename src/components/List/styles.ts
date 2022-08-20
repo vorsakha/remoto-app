@@ -5,18 +5,22 @@ import {
   View,
 } from 'react-native';
 import styled from 'styled-components/native';
-import { Title } from '../common';
+import { Container, Title } from '../common';
 
-export const ListContainer = styled(View)`
-  background-color: ${({ theme }) => theme.colors.gray._100};
-`;
+interface ListItemProps extends TouchableOpacityProps {
+  isEnd: boolean;
+  isStart: boolean;
+}
+
+export const ListContainer = styled(Container)``;
 
 export const ListItem = styled(TouchableOpacity).attrs({
   activeOpacity: 0.6,
-})<TouchableOpacityProps>`
+})<ListItemProps>`
   border: 1px solid ${({ theme }) => theme.colors.violet.transparency};
-  margin-top: 24px;
   border-radius: 5px;
+  margin-bottom: ${({ isEnd }) => (isEnd ? '24px' : 0)};
+  margin-top: ${({ isStart }) => (isStart ? '24px' : 0)};
   padding: 12px;
   justify-content: space-between;
   margin-horizontal: 24px;
@@ -39,5 +43,9 @@ export const ListItemDate = styled(Text)`
 `;
 
 export const BadgesList = styled(View)`
+  padding-vertical: 12px;
+`;
+
+export const Separator = styled(View)`
   padding-vertical: 12px;
 `;
