@@ -7,7 +7,7 @@
 
 ## 🚀 Tech Stack
 
-- React Native
+- React Native (expo)
 - Styled Components
 - Typescript
 
